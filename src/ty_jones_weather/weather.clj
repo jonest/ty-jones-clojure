@@ -1,6 +1,9 @@
 (ns ty-jones-weather.weather
   (:require [clj-http.client :as client]
-            [environ.core :refer [env]]))
+            [environ.core :refer [env]]
+            [compojure.route :as route]
+            [compojure.core :refer [defroutes GET PUT POST DELETE ANY]]
+            [ty-jones-weather.formatters :refer :all]))
 
 (defn deep-select [data keywords]
    (map #(get-in data %) keywords))
@@ -17,3 +20,11 @@
   {:status 200
    :headers {"Content-Type" "text/plain"}
    :body (pr-str (get-weather zip formatter))}))
+
+ (defroutes routes
+    (GET "/weather/:zip/friendly" [zip]
+         ((return-weather format-friendly) zip))
+    (GET "/weather/:zip/temp" [zip]
+         ((return-weather format-temp) zip))
+    (GET "/weather/:zip/speed" [zip]
+         ((return-weather format-speed) zip)))

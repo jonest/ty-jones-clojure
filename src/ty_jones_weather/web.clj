@@ -5,16 +5,10 @@
             [clojure.java.io :as io]
             [ring.adapter.jetty :as jetty]
             [environ.core :refer [env]]
-            [ty-jones-weather.formatters :refer :all]
-            [ty-jones-weather.weather :refer [return-weather]]))
+            [ty-jones-weather.weather :as weather :refer [routes]]))
 
 (defroutes app
-  (GET "/weather/:zip/friendly" [zip]
-       ((return-weather format-friendly) zip))
-  (GET "/weather/:zip/temp" [zip]
-       ((return-weather format-temp) zip))
-  (GET "/weather/:zip/speed" [zip]
-       ((return-weather format-speed) zip))
+  weather/routes
   (ANY "*" []
        (route/not-found (slurp (io/resource "404.html")))))
 
