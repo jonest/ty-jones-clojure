@@ -6,7 +6,8 @@
             [ring.adapter.jetty :as jetty]
             [environ.core :refer [env]]
             [cheshire.core :refer :all]
-            [ty-jones-weather.weather :as weather :refer [routes]]))
+            [ty-jones-weather.weather :as weather :refer [routes]]
+            [ty-jones-weather.auth :as auth :refer [routes]]))
 
 (defn read-name [json-name-string]
   (let [{{first :first last :last} :name} (decode json-name-string true)]
@@ -14,6 +15,7 @@
 
 (defroutes app
   weather/routes
+  auth/routes
   (POST "/name" {body :body}
     (read-name (slurp body)))
   (ANY "*" []
