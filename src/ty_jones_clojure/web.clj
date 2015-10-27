@@ -1,4 +1,4 @@
-(ns ty-jones-weather.web
+(ns ty-jones-clojure.web
   (:require [compojure.core :refer [defroutes GET PUT POST DELETE ANY]]
             [compojure.handler :refer [site]]
             [compojure.route :as route]
@@ -6,8 +6,8 @@
             [ring.adapter.jetty :as jetty]
             [environ.core :refer [env]]
             [cheshire.core :refer :all]
-            [ty-jones-weather.weather :as weather]
-            [ty-jones-weather.auth :as auth]))
+            [ty-jones-clojure.weather :as weather]
+            [ty-jones-clojure.auth :as auth]))
 
 (defn read-name [json-name-string]
   (let [{{first :first last :last} :name} (decode json-name-string true)]

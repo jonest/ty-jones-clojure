@@ -1,9 +1,9 @@
-(ns ty-jones-weather.weather
+(ns ty-jones-clojure.weather
   (:require [clj-http.client :as client]
             [environ.core :refer [env]]
             [compojure.route :as route]
             [compojure.core :refer [defroutes GET PUT POST DELETE ANY]]
-            [ty-jones-weather.formatters :refer :all]))
+            [ty-jones-clojure.formatters :refer :all]))
 
 (defn deep-select [data keywords]
    (map #(get-in data %) keywords))

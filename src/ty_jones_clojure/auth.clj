@@ -1,4 +1,4 @@
-(ns ty-jones-weather.auth
+(ns ty-jones-clojure.auth
   (:require [clj-http.client :as client]
             [environ.core :refer [env]]
             [ring.util.codec :as rcodec]
