@@ -7,7 +7,8 @@
                  [compojure "1.1.8"]
                  [clj-http "1.1.0"]
                  [ring/ring-jetty-adapter "1.2.2"]
-                 [environ "1.0.1"]]
+                 [environ "1.0.1"]
+                 [cheshire "5.5.0"]]
   :min-lein-version "2.0.0"
   :plugins [[lein-environ "1.0.1"]]
   :hooks [environ.leiningen.hooks]
